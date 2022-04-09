@@ -17,17 +17,12 @@
       }
     </style>
     <script src="https://cdn.bootcdn.net/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="http://www.wjceo.com/lib/js/libs/stats.min.js"></script>
-    <script src="https://cdn.bootcss.com/dat-gui/0.7.1/dat.gui.min.js"></script>
   </head>
   <body onload="init()"></body>
   <script>
     // 声明全局变量
     let renderer, camera, scene, geometry, material, mesh;
 
-    // 性能检测插件
-    stats = new Stats();
-    document.body.appendChild(stats.dom);
     // 初始化渲染器
     const initRenderer = () => {
       renderer = new THREE.WebGLRenderer(); // 实例化渲染器
@@ -56,7 +51,6 @@
 
       mesh = new THREE.Mesh(geometry, material); // 创建网格
       mesh.name = "firstObj";
-      // mesh.visible = false;
       mesh.position.set(3, 5, -6); //直接将模型的位置设置在x轴为3，y轴为5，z轴为-6的位置
       scene.add(mesh); // 将网格添加到场景
     };
@@ -67,7 +61,6 @@
 
       mesh.rotation.x += 0.01; // 每帧网格模型的沿x轴旋转0.01弧度
       mesh.rotation.y += 0.02; // 每帧网格模型的沿y轴旋转0.02弧度
-      stats.update(); // 更新性能插件
 
       renderer.render(scene, camera); // 渲染界面
     };
@@ -98,8 +91,6 @@
       gui.add(controls, "positionX", -15, 15).onChange(updatePosition);
       gui.add(controls, "positionY", -15, 15).onChange(updatePosition);
       gui.add(controls, "positionZ", -15, 15).onChange(updatePosition);
-
-      // console.log(scene.getObjectByName("firstObj")); // 返回第一个匹配的3d对象
     };
   </script>
 </html>
